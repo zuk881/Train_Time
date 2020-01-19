@@ -2,94 +2,78 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Train Time</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js> </script> <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 </head>
 
-<body>
+<body id="body">
     <div class="container">
         <div class="jumbotron text-center">
-            <h1 class="display-3 justify-content-center">Anytime is Train Time</h1>
+         <h1 class="display-3 justify-content-center">Anytime is Train Time</h1>
             <p class="lead">Choo Choo. Chee Chee.</p>
         </div>
         <div class="container table-1">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Current Train Schedule</th>
-                </tr>
-                <tr>
-                    <th>Train Name</th>
-                    <th>Destination</th>
-                    <th>Frequency(min)</th>
-                    <th>Next Arrival</th>
-                    <th>Minutes Away</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                </tr>
-
-            </tbody>
-        </table>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th id="h1">Current Train Schedule</th>
+                    </tr>
+                    <tr>
+                        <th>Train Name</th>
+                        <th>Destination</th>
+                        <th>Frequency(min)</th>
+                        <th>Next Arrival</th>
+                        <th>Minutes Away</th>
+                    </tr>
+                </thead>
+                <tbody class="train-info">
+                </tbody>
+            </table>
+        </div>
+        <div class="container table-2">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th id="h2">Add Train</th>
+                    </tr>
+                </thead>
+            </table>
+            <form>
+                <div class="form-group">
+                    <label for="train-name">Train Name</label>
+                    <input onfocus="this.value=''" type="text" class="form-control train-name" placeholder="train name">
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input onfocus="this.value=''" type="text" class="form-control destination" placeholder="destination">
+                </div>
+                <div class="form-group">
+                    <label for="train-time">First Train Time (HH:mm military time)</label>
+                    <input onfocus="this.value=''" type="text" class="form-control train-time" placeholder="HH:mm">
+                </div>
+                <div class="form-group">
+                    <label for="frequency">Frequency(min)</label>
+                    <input onfocus="this.value=''" type="number" name="quantity" min="1" max="60" class="form-control frequency"
+                        placeholder="min">
+                </div>
+                <div class="form-group">
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="container table-2">
-        <table class="table table-hover">
-        <thead></thead>
-        <tr>
-            <th>Add Train</th>
-        </tr>
-    </thead>
-</table>
-    <form>
-            <div class="form-group">
-              <label for="formGroupExampleInput">Train Name</label>
-              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="train name">
-            </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput2">Destination</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="destination">
-            </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">First Train Time (HH:mm military time)</label>
-                <input type="time" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-              </div>
-              <div class="form-group">
-                <label for="formGroupExampleInput2">Frequency(min)</label>
-                <input type="number" name="quantity" min="1" max="60" class="form-control" id="formGroupExampleInput2" placeholder="min">
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
 
+    <script src="assets/javascript/train.js"></script>
 
-
-
-
-
-    </div>
-    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-    <script>
-        var config = {
-            apiKey: "AIzaSyDju6XS41NU7q-N6rmhMfIyXnpEVwKVBHo",
-            authDomain: "testfirebase-a917d.firebaseapp.com",
-            databaseURL: "https://testfirebase-a917d.firebaseio.com",
-            projectId: "testfirebase-a917d",
-            storageBucket: "testfirebase-a917d.appspot.com",
-        };
-
-        firebase.initializeApp(config);
-        var database = firebase.database();
-
-    </script>
 </body>
 
 </html>

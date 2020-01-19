@@ -1,17 +1,16 @@
-body {
+#body {
     background-color: lightgray;
 }
 
 table {
-background-color: lightsteelblue;
-border-radius: 12px;
+    border-radius: 12px;
 }
 
 .jumbotron {
     width: 100%;
     border-radius: 12px;
     background-color:lightsteelblue;
-    color: white;
+    color: gray;
 }
 
 .container {
@@ -21,12 +20,10 @@ border-radius: 12px;
 }
 
 .table-1 {
-    border: 3px solid lightsteelblue;
     border-radius: 12px;
 }
 
 .table-2 {
-    border: 3px solid lightsteelblue;
     border-radius: 12px;
     margin-top: 24px;
 }
@@ -35,3 +32,19 @@ border-radius: 12px;
     width: 100%;
     border-radius: 12px;
 }
+
+#h1 {
+    background-color: lightskyblue;
+    border-radius: 9px;
+}
+
+#h2 {
+    background-color: lightskyblue;
+    border-radius: 9px;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;     
+    font-weight: bolder;
+}
+
