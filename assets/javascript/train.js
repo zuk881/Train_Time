@@ -24,7 +24,6 @@ $(document).ready(function () {
         })
     })
 
-
 // function to get a snapshot of stored data and update page in real-time    
     database.ref().on("child_added", function (snapshot) {
 
@@ -48,7 +47,6 @@ $(document).ready(function () {
             $("<td>").text(inputFrequency),
             $("<td>").text(nextTrain),
             $("<td>").text(tMinutesTillTrain)
-
 
         );
 
