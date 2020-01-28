@@ -10,10 +10,18 @@ $(document).ready(function () {
     };
     firebase.initializeApp(config);
 
-// assign variable to the database    
+    // assign variable to the database    
     var database = firebase.database();
 
-// onclick function to push data from input fields to firebase
+    // variable to hold setInterval time, update every second    
+    var timer = setInterval(updateTime, 1000);
+
+    // function to run time/date in jumbotron    
+    function updateTime() {
+        $("#currentTime").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
+    }
+
+    // onclick function to push data from input fields to firebase
     $("#submit").on("click", function (event) {
         event.preventDefault();
         database.ref().push({
@@ -24,7 +32,7 @@ $(document).ready(function () {
         })
     })
 
-// function to get a snapshot of stored data and update page in real-time    
+    // function to get a snapshot of stored data and update page in real-time    
     database.ref().on("child_added", function (snapshot) {
 
         // setting variables to values stored in database
