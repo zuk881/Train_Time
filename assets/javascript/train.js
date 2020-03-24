@@ -13,12 +13,11 @@ $(document).ready(function () {
     // assign variable to the database    
     var database = firebase.database();
 
-    // variable to hold setInterval time, update every second    
-    var timer = setInterval(updateTime, 1000);
-
-    // function to run time/date in jumbotron    
-    function updateTime() {
-        $("#currentTime").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
+    // function to run time/date in jumbotron  
+    function displayTime() {
+        var time = moment().format('MMMM Do YYYY, HH:mm:ss a');
+        $('#current-time').html(time);
+        setTimeout(displayTime, 1000);
     }
 
     // onclick function to push data from input fields to firebase
@@ -61,4 +60,5 @@ $(document).ready(function () {
         // call to append data to table
         $(".train-info").append(newRow);
     });
+    displayTime();
 });
